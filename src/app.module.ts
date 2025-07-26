@@ -3,6 +3,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
 import * as dotenv from 'dotenv';
+import { AuthModule } from './modules/auth/auth.module';
 
 dotenv.config();
 
@@ -29,6 +30,8 @@ dotenv.config();
       inject: [ConfigService],
     }),
     UserModule,
+    AuthModule, 
   ],
 })
+
 export class AppModule {}
