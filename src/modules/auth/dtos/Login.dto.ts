@@ -1,25 +1,24 @@
-import { IsEmail, IsNotEmpty, Length } from 'class-validator';
+import { IsNotEmpty, Length, Matches } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
 export class LoginDto {
   @ApiProperty({
-    example: 'usuario@example.com',
-    description: 'Correo electrónico del usuario',
+    example: '987654321',
+    description: 'Número de teléfono (solo dígitos, 9-15 caracteres)',
     required: true,
     type: String,
-    format: 'email'
   })
-  @IsEmail()
+  @Matches(/^[0-9]{9,15}$/, {
+    message: 'El número debe contener solo dígitos (9-15 caracteres)',
+  })
   @IsNotEmpty()
-  email: string;
+  phone: string;
 
   @ApiProperty({
     example: 'mipassword123',
-    description: 'Contraseña del usuario (8-20 caracteres)',
+    description: 'Contraseña (8-20 caracteres)',
     required: true,
     type: String,
-    minLength: 8,
-    maxLength: 20
   })
   @Length(8, 20)
   @IsNotEmpty()

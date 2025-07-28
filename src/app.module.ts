@@ -4,6 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
 import * as dotenv from 'dotenv';
 import { AuthModule } from './modules/auth/auth.module';
+import { PrendasModule } from './modules/prendas/prendas.module';
+import { JwtModule } from '@nestjs/jwt';
+import { PrendaImagesModule } from './modules/prendaImage/prendaImage.module';
+import { CloudinaryModule } from './modules/cloudinary/cloudinary.module';
 
 dotenv.config();
 
@@ -30,7 +34,15 @@ dotenv.config();
       inject: [ConfigService],
     }),
     UserModule,
-    AuthModule, 
+    AuthModule,
+    PrendasModule, 
+    CloudinaryModule,
+    PrendaImagesModule,
+    JwtModule.register({
+      global: true,
+      secret: process.env.JWT_SECRET,
+      signOptions: { expiresIn: '1d' },
+    }),
   ],
 })
 

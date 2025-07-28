@@ -1,8 +1,8 @@
 // src/user/user.controller.ts
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CreateUserDto } from './dtos/CreateUser.dto';
 import { UsersService } from './user.service';
-import { ApiTags, ApiResponse, ApiBody } from '@nestjs/swagger';
+import { ApiTags, ApiResponse, ApiBody, ApiOperation } from '@nestjs/swagger';
 import { User } from '../../entities/user.entity';
 
 interface CreateUserResponse {
@@ -15,6 +15,13 @@ interface CreateUserResponse {
 @Controller('user')
 export class UserController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Get()
+  @ApiOperation({ summary: 'Obtener todos los usuarios' })
+  @ApiResponse({ status: 200, type: [User] })
+  async findAll() {
+    return this.usersService.findAll();
+  }
 
   @Post()
   @ApiBody({ type: CreateUserDto })

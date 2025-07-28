@@ -13,6 +13,11 @@ export class UsersService {
     private usersRepo: Repository<User>,
   ) {}
 
+  findAll() {
+    return this.usersRepo.find();
+  }
+  
+
   findOneBy(condition: Partial<User>) {
     return this.usersRepo.findOneBy(condition);
   }

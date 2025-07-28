@@ -1,31 +1,27 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { LoggerGlobal } from './middleware/logger.middleware';
-import * as express from 'express';
-import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import helmet from 'helmet';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  const swaggerConfig = new DocumentBuilder()
-  .setTitle('API de App ¿Qué me pongo?') // Título de la documentación
-  // Descripción 
-  .addBearerAuth()
-  .setDescription('Documentación técnica de la API REST que respalda las operaciones de la App ¿Qué me Pongo?') 
-  .setVersion('1.0.0') // Versión 
-  .build();
-
-  // Generación del documento Swagger 
-  const document = SwaggerModule.createDocument(app, swaggerConfig);
-
-  // Montaje de la interfaz de Swagger en la ruta '/api'
-  SwaggerModule.setup('api', app, document);
-
+  
+  app.use(helmet());
+  app.enableCors();
   app.use(LoggerGlobal);
-  app.use(express.json());
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
 
-  await app.listen(process.env.PORT ?? 3000);
+  const config = new DocumentBuilder()
+    .setTitle('API ¿Qué Me Pongo?')
+    .setDescription('Sistema de recomendación de outfits')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+    
+  SwaggerModule.setup('api', app, SwaggerModule.createDocument(app, config));
+
+  await app.listen(process.env.PORT || 3000);
 }
-bootstrap(); 
+bootstrap();
