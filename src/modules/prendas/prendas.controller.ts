@@ -1,3 +1,4 @@
+//prendas.controller.ts
 import { Controller, Get, Post, Body, UseGuards, Request, Query, HttpStatus } from '@nestjs/common';
 import { PrendasService } from './prendas.service';
 import { CreatePrendaDto } from './dtos/CreatePrenda.dto';

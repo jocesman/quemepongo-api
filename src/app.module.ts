@@ -1,3 +1,4 @@
+// app.module.ts
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -8,6 +9,7 @@ import { PrendasModule } from './modules/prendas/prendas.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PrendaImagesModule } from './modules/prendaImage/prendaImage.module';
 import { CloudinaryModule } from './modules/cloudinary/cloudinary.module';
+import { OutfitModule } from 'modules/outfit/outfit.module';
 
 dotenv.config();
 
@@ -38,6 +40,7 @@ dotenv.config();
     PrendasModule, 
     CloudinaryModule,
     PrendaImagesModule,
+    OutfitModule,
     JwtModule.register({
       global: true,
       secret: process.env.JWT_SECRET,

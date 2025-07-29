@@ -1,6 +1,8 @@
+//user.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { Prenda } from './prenda.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Outfit } from './outfit.entity';
 
 @Entity()
 export class User {
@@ -26,4 +28,9 @@ export class User {
   @OneToMany(() => Prenda, (prenda) => prenda.user)
   @ApiProperty({ type: () => [Prenda], description: 'Prendas del usuario' })
   prendas: Prenda[];
+
+  @OneToMany(() => Outfit, (outfit) => outfit.user)
+  outfits: Outfit[];
+
+
 }

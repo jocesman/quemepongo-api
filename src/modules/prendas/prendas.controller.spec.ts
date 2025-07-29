@@ -1,3 +1,4 @@
+//prendas.controller.spec.ts
 import { Test, TestingModule } from '@nestjs/testing';
 import { PrendasController } from './prendas.controller';
 

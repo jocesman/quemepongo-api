@@ -1,7 +1,7 @@
+//dtos/CreatePrenda.dto.ts
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { NivelAbrigo, TipoPrenda } from '../../../enums/tipos.enums';
-
 
 export class CreatePrendaDto {
   @ApiProperty({

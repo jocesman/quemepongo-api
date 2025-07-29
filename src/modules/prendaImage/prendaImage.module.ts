@@ -1,3 +1,4 @@
+//prendaImage.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { PrendaImage } from '../../entities/prendaImage.entity';

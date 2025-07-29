@@ -1,3 +1,4 @@
+//auth.controller.ts
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { LoginDto } from './dtos/Login.dto';
 import { AuthService } from './auth.service';
@@ -26,7 +27,7 @@ export class AuthController {
         value: {
           name: "Juan Pérez",
           email: "juan@example.com",
-          phone: "+51987654321",
+          phone: "51987654321",
           password: "P@ssw0rd123"
         }
       }
@@ -40,7 +41,7 @@ export class AuthController {
         id: "uuid",
         name: "Juan Pérez",
         email: "juan@example.com",
-        phone: "+51987654321"
+        phone: "51987654321"
       }
     }
   })
@@ -71,7 +72,7 @@ export class AuthController {
         access_token: "jwt.token.here",
         user: {
           id: "uuid",
-          email: "juan@example.com"
+          phone: "51987654321"
         }
       }
     }
