@@ -1,4 +1,4 @@
-//create-user.dto.ts
+//CreateUserDto.ts
 import { IsEmail, IsNotEmpty, Length } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 

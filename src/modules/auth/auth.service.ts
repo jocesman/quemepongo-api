@@ -1,4 +1,4 @@
-// src/auth/auth.service.ts
+//auth.service.ts
 import { 
   Injectable, 
   ConflictException,
@@ -49,13 +49,25 @@ export class AuthService {
       throw new UnauthorizedException('Credenciales inválidas');
     }
 
-    const { password, ...user } = users; // Exclude password from response
+    const { password, ...user } = users;
 
-    // const payload = { phone: user.phone, sub: user.id };
-    const payload = { phone: user.phone, id: user.id, name: user.name, email: user.email };
+    const userResponse = {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+    };
+
+    const payload = {
+      id: user.id,
+      phone: user.phone,
+      name: user.name,
+      email: user.email,
+    };
+
     return {
       access_token: this.jwtService.sign(payload),
-      user
+      user: userResponse,
     };
   }
 }

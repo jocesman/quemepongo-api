@@ -1,3 +1,4 @@
+//prendaImage.entity.ts
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { Prenda } from '../entities/prenda.entity';
 

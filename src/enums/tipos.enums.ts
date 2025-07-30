@@ -1,3 +1,5 @@
+// enums.ts
+
 export enum TipoPrenda {
   SUPERIOR = 'superior',
   INFERIOR = 'inferior',

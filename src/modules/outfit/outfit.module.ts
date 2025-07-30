@@ -1,3 +1,4 @@
+//outfit.module.ts
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Outfit } from '../../entities/outfit.entity';

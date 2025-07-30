@@ -9,7 +9,7 @@ import { PrendasModule } from './modules/prendas/prendas.module';
 import { JwtModule } from '@nestjs/jwt';
 import { PrendaImagesModule } from './modules/prendaImage/prendaImage.module';
 import { CloudinaryModule } from './modules/cloudinary/cloudinary.module';
-import { OutfitModule } from 'modules/outfit/outfit.module';
+import { OutfitModule } from './modules/outfit/outfit.module';
 
 dotenv.config();
 

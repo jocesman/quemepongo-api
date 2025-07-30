@@ -1,10 +1,11 @@
 //prendas.controller.ts
-import { Controller, Get, Post, Body, UseGuards, Request, Query, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, UseGuards, Request, Query, HttpStatus, Delete, Param, Put } from '@nestjs/common';
 import { PrendasService } from './prendas.service';
 import { CreatePrendaDto } from './dtos/CreatePrenda.dto';
 import { JwtAuthGuard } from '../../guards/jwt-auth.guard';
 import { ApiBearerAuth, ApiBody, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Prenda } from '../../entities/prenda.entity';
+import { UpdatePrendaDto } from './dtos/UpdatePrenda.dto';
 
 @ApiTags('Prendas')
 @ApiBearerAuth()
@@ -48,4 +49,22 @@ export class PrendasController {
   async generateOutfit(@Request() req, @Query('clima') clima: string) {
     return this.prendasService.generateOutfit(req.user.id, clima);
   }
+
+  @Delete(':id')
+    @UseGuards(JwtAuthGuard)
+    async remove(@Param('id') id: string, @Request() req) {
+      return this.prendasService.delete(id, req.user.id);
+  }
+
+  @Put(':id')
+  @UseGuards(JwtAuthGuard)
+  async update(
+    @Param('id') id: string,
+    @Request() req,
+    @Body() dto: UpdatePrendaDto
+  ) {
+    return this.prendasService.update(id, req.user.id, dto);
+  }
+
+
 }
