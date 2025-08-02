@@ -37,4 +37,10 @@ export class CreatePrendaDto {
   @IsOptional()
   @IsString()
   color?: string;
+
+  @IsOptional()
+  @IsString()
+  @ApiProperty({ example: 'frio', required: false })
+  clima?: string;
+
 }

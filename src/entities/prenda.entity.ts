@@ -35,6 +35,11 @@ export class Prenda {
 
   @OneToMany(() => PrendaImage, (image) => image.prenda)
   imagenes: PrendaImage[];
+
+  @Column({ nullable: true })
+  @ApiProperty({ example: 'frio', required: false })
+  clima?: string;
+
 }
 
 

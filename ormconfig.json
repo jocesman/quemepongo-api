@@ -1,0 +1,13 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "admin",
+  "database": "quemepongo",
+  "entities": ["src/**/*.entity{.ts,.js}"],
+  "migrations": ["src/migrations/*{.ts,.js}"],
+  "cli": {
+    "migrationsDir": "src/migrations"
+  }
+}

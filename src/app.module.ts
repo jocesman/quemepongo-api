@@ -31,6 +31,8 @@ dotenv.config();
           database: config.get<string>('DB_NAME'),
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
           synchronize: true, 
+          logging: true,
+          migrations: [__dirname + '/migrations/*{.ts,.js}'],
         };
       },
       inject: [ConfigService],

@@ -1,10 +1,22 @@
 //cloudinary.service.ts
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { UploadApiResponse, UploadApiErrorResponse, v2 as cloudinary } from 'cloudinary';
 
 @Injectable()
 export class CloudinaryService {
   async uploadImage(file: Express.Multer.File): Promise<string> {
+
+    // Validación de tipo de archivo
+    if (!file.mimetype.startsWith('image/')) {
+      throw new BadRequestException('Solo se permiten archivos de imagen');
+    }
+
+    // Validación de tamaño máximo (5MB)
+    const maxSizeInBytes = 2 * 1024 * 1024;
+    if (file.size > maxSizeInBytes) {
+      throw new BadRequestException('La imagen excede el tamaño máximo de 2MB');
+    }
+
     return new Promise((resolve, reject) => {
       const uploadOptions = {
         resource_type: 'auto' as const,
